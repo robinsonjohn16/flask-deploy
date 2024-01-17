@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Face Recoginition</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+         crossorigin="anonymous"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = '../static/first.css') }}"
+      />
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+         crossorigin="anonymous"
+      ></script>
+   </head>
+   <body>
+      <form name="month-form">
+         <label for="roll">Roll Number</label>
+         <input type="roll" name="roll" class="field" required />
+         <select name="selectMonth">
+            <option selected>Select The Month</option>
+            <option value="January" name="January">January</option>
+            <option value="February" name="Sy">February</option>
+            <option value="March" name="Ty">March</option>
+            <option value="April" name="Ty">April</option>
+            <option value="May" name="Ty">May</option>
+            <option value="June" name="Ty">June</option>
+            <option value="July" name="Ty">July</option>
+            <option value="August" name="Ty">August</option>
+            <option value="September" name="Ty">September</option>
+            <option value="October" name="Ty">October</option>
+            <option value="November" name="Ty">November</option>
+            <option value="December" name="Ty">December</option>
+         </select>
+         <button class="btn btn-secondary nextButton"><b>Next</b></button>
+
+         <p class="error error--hidden"></p>
+      </form>
+   </body>
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/month.js') }}"></script>
+</html>

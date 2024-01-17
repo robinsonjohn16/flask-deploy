@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>AttenEase | Auth</title>
+   </head>
+   <body>
+      <h1>ReAuthenticate Login</h1>
+      <form name="submit-form">
+         <label for="name">Name</label>
+         <input type="text" name="name" class="field" required />
+         <label for="password">Password</label>
+         <input type="password" name="password" class="field" required />
+         <p class="error error--hidden"></p>
+         <input type="submit" value="Log In" class="btn" />
+      </form>
+   </body>
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/submit.js') }}"></script>
+</html>

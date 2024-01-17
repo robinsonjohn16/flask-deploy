@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>AttenEase | Auth</title>
+   </head>
+   <body>
+      <h1>Admin Login</h1>
+      <form name="admin-form">
+         <label for="name">Name</label>
+         <input type="text" name="name" class="field" required />
+         <label for="password">Password</label>
+         <input type="password" name="password" class="field" required />
+         <p class="error error--hidden"></p>
+         <input type="submit" value="Log In" class="btn" />
+         <a href="/">New User Register Instead</a>
+      </form>
+   </body>
+
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/adminLogin.js') }}"></script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>AttenEase | Login</title>
+
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = 'Stylesheets/login.css') }}"
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+         rel="stylesheet"
+      />
+   </head>
+   <body>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i
+               ></label>
+               <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="#">Contact</a></li>
+               <li><a href="#">Feedback</a></li>
+            </ul>
+            <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i
+            ></label>
+            <!-- </div> -->
+         </div>
+      </nav>
+      <h2>Teachers Login(Admin Login)</h2>
+      <div class="hero">
+         <div class="left">
+            <!-- <img src="../static/assets/login-page-img1.jpg" alt="" /> -->
+         </div>
+         <div class="middle">
+            <form name="admin-form">
+               <div>
+                  <label for="email">Username</label>
+                  <input type="text" name="name" class="field" required />
+               </div>
+               <div>
+                  <label for="password">Password</label>
+                  <input
+                     type="password"
+                     name="password"
+                     class="field"
+                     required
+                  />
+               </div>
+               <h5 class="error error--hidden"></h5>
+               <button type="submit">Log In</button>
+               <a href="/">For Student</a>
+            </form>
+         </div>
+
+         <div class="right">
+            <img src="../static/assets/login-page-img2.png" alt="" />
+         </div>
+      </div>
+   </body>
+
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/adminLogin.js') }}"></script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Face Recoginition</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = '../static/first.css') }}"
+      />
+   </head>
+   <body>
+      <nav>
+         <div class="left-nav">
+            <li>
+               <a href="#"><b>SIES COLLEGE</b></a>
+            </li>
+            <li>
+               <a href="#">Home</a>
+            </li>
+         </div>
+         <div class="right-nav">
+            <!-- <form name="default-form"> -->
+            <button class="defaultersBtn" name="forwardBtn">
+               <a href="/yearDefaulters">Defaulters</a>
+            </button>
+            <!-- </form> -->
+         </div>
+      </nav>
+      <section>
+         <div class="left-section">
+            <div class="text"><h2>Select the Appropriate Year</h2></div>
+            <div class="yearSelectDiv">
+               <form name="year-form">
+                  <select name="selectOption">
+                     <option selected>Select The Year</option>
+                     <option value="FY-IT" name="Fy">FY-IT</option>
+                     <option value="SY-IT" name="Sy">SY-IT</option>
+                     <option value="TY-IT" name="Ty">TY-IT</option>
+                  </select>
+                  <p class="error error--hidden"></p>
+                  <button class="nextBtn"><b>Next</b></button>
+               </form>
+            </div>
+         </div>
+      </section>
+   </body>
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/year.js') }}"></script>
+
+   <!-- <script src="../static/Javascript/jquery.js"></script> -->
+   <!-- <script src="../static/Javascript/year.js"></script> -->
+</html>

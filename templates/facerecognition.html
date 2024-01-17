@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Face Recoginition Model</title>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = '../static/index.css') }}"
+      />
+   </head>
+   <body>
+      <nav>
+         <div class="nav-div">
+            <a href="#"><b>{{subject}}</b></a>
+            <a href="#">Home</a>
+            <a href="/admin/detected">Detected faces</a>
+         </div>
+         <form action="/admin/submit" method="POST" class="formForward">
+            <button class="nextBtn" name="forwardBtn">Submit</button>
+         </form>
+      </nav>
+      <div id="finalInfo">
+         This is {{year}} Class and Subject {{subject}} and it will be counted
+         as {{lectureNum}} Lectures in the DataBase
+      </div>
+      <div id="forwardInfo2">{{forward_message}}</div>
+      <p id="textPlaceholder"></p>
+
+      <div class="bodydiv">
+         <div class="container1">
+            <video id="camera" autoplay></video>
+            <canvas id="canvas" style="display: none"></canvas>
+         </div>
+      </div>
+      <script>
+         const videoElement = document.getElementById("camera");
+         const canvasElement = document.getElementById("canvas");
+         const canvasContext = canvasElement.getContext("2d");
+         const constraints = {
+            video: { facingMode: "environment" },
+         };
+
+         if (
+            navigator.mediaDevices &&
+            navigator.mediaDevices.getUserMedia(constraints)
+         ) {
+            navigator.mediaDevices
+               .getUserMedia({ video: true })
+               .then(function (stream) {
+                  videoElement.srcObject = stream;
+                  videoElement.onloadedmetadata = function () {
+                     canvasElement.width = videoElement.videoWidth;
+                     canvasElement.height = videoElement.videoHeight;
+                  };
+               })
+               .catch(function (error) {
+                  console.error("Error accessing camera:", error);
+               });
+         } else {
+            console.error("getUserMedia is not supported");
+         }
+
+         async function sendFrames() {
+            canvasContext.drawImage(
+               videoElement,
+               0,
+               0,
+               canvasElement.width,
+               canvasElement.height
+            );
+            canvasElement.toBlob(
+               async (blob) => {
+                  const formData = new FormData();
+                  formData.append("image_data", blob, "frame.jpeg");
+                  try {
+                     const response = await fetch(
+                        "/admin/facerecognition/process_frames/",
+                        {
+                           method: "POST",
+                           body: formData,
+                        }
+                     );
+
+                     const data = await response.json();
+                     textPlaceholder.textContent = data.message;
+                  } catch (error) {
+                     console.error("Error sending frames:", error);
+                  }
+               },
+               "image/jpeg",
+               0.99
+            );
+         }
+
+         setInterval(sendFrames, 2500);
+      </script>
+   </body>
+</html>

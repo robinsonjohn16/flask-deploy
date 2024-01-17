@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Face Recoginition</title>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = '../static/subject.css') }}"
+      />
+   </head>
+   <body>
+      <nav>
+         <div class="nav-div">
+            <li>
+               <a href="#"><b>SIES COLLEGE</b></a>
+            </li>
+            <li><a href="#">Home</a></li>
+            <li>
+               <a href="#">Selected Year :- <b> {{year}}</b></a>
+            </li>
+         </div>
+      </nav>
+      <section>
+         <div class="left-section">
+            <img
+               src="{{ url_for('static', filename='../static/years.jpg') }}"
+               alt=""
+            />
+         </div>
+         <div class="right-section">
+            <div class="text">
+               <h2>Select the Subject</h2>
+               <form name="subject-form">
+                  <select name="selectOption" class="subjectSelect">
+                     <option selected>Select The Subject</option>
+                     {% for s in subjectList %}
+                     <option value="{{s}}">{{s}}</option>
+                     {% endfor %}
+                  </select>
+                  <div class="lec">
+                     <label for="lecnum" name="lecnum"
+                        >Duration of Lecture, measured in hours, must be Integer
+                        value :-
+                     </label>
+                     <input required type="text" name="lecnum" />
+                  </div>
+                  <p class="error error--hidden"></p>
+                  <button type="submit" class="nextBtn">Next</button>
+               </form>
+            </div>
+         </div>
+      </section>
+   </body>
+
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/subject.js') }}"></script>
+   <!-- <script src="../static/Javascript/jquery.js"></script>
+   <script src="../static/Javascript/subject.js"></script> -->
+</html>

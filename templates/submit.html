@@ -4,17 +4,67 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>AttenEase | Auth</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = '../static/Stylesheets/year.css') }}"
+      />
    </head>
    <body>
-      <h1>ReAuthenticate Login</h1>
-      <form name="submit-form">
-         <label for="name">Name</label>
-         <input type="text" name="name" class="field" required />
-         <label for="password">Password</label>
-         <input type="password" name="password" class="field" required />
-         <p class="error error--hidden"></p>
-         <input type="submit" value="Log In" class="btn" />
-      </form>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i
+               ></label>
+               <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="/yearDefaulters">Defaulters</a></li>
+               <!-- <li><a href="#">Feedback</a></li> -->
+            </ul>
+            <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i
+            ></label>
+            <!-- </div> -->
+         </div>
+      </nav>
+      <section>
+         <div class="left-section">
+            <h1>Authenticate Yourself to Submit</h1>
+            <form name="submit-form">
+               <!-- <label for="name"></label> -->
+               <input
+                  type="text"
+                  name="name"
+                  placeholder="Id"
+                  class="field submit-field"
+                  required
+               />
+               <!-- <label for="password"></label> -->
+               <input
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  class="field submit-field1"
+                  required
+               />
+               <p class="error error--hidden"></p>
+               <button type="submit" class="btn">Submit</button>
+            </form>
+         </div>
+
+         <div class="right-section">
+            <img src="/static/assets/yearImg.png" alt="Hello" />
+         </div>
+      </section>
    </body>
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <script src="{{ url_for('static', filename='./Javascript/submit.js') }}"></script>

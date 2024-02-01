@@ -13,21 +13,40 @@
       />
       <link
          rel="stylesheet"
-         href="{{ url_for('static', filename = '../static/index.css') }}"
+         href="{{ url_for('static', filename = '../static/Stylesheets/facerecognition.css') }}"
       />
    </head>
    <body>
       <nav>
-         <div class="nav-div">
-            <a href="#"><b>{{subject}}</b></a>
-            <a href="#">Home</a>
-            <a href="/admin/detected">Detected faces</a>
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i>
+               </label>
+               <li><a href="#">Home</a></li>
+               <li><a href="/admin/detected">Detected Faces</a></li>
+               <li><a href="/admin/submit">Subject</a></li>
+               <!-- <li><a href="/yearDefaulters">Defaulters</a></li> -->
+               <!-- <li><a href="#">Feedback</a></li> -->
+            </ul>
+            <!-- <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i>
+            </label> -->
+            <!-- </div> -->
          </div>
-         <form action="/admin/submit" method="POST" class="formForward">
-            <button class="nextBtn" name="forwardBtn">Submit</button>
-         </form>
       </nav>
-      <div id="finalInfo">
+      <section>
+         <div class="left-section">
+            <div id="forwardInfo2">{{forward_message}}</div>
+            <p id="textPlaceholder"></p>
+            <video id="camera" autoplay></video>
+            <canvas id="canvas" style="display: none"></canvas>
+         </div>
+         <div class="right-section"></div>
+      </section>
+      <!-- <div id="finalInfo">
          This is {{year}} Class and Subject {{subject}} and it will be counted
          as {{lectureNum}} Lectures in the DataBase
       </div>
@@ -39,7 +58,7 @@
             <video id="camera" autoplay></video>
             <canvas id="canvas" style="display: none"></canvas>
          </div>
-      </div>
+      </div> -->
       <script>
          const videoElement = document.getElementById("camera");
          const canvasElement = document.getElementById("canvas");
@@ -99,7 +118,6 @@
                0.99
             );
          }
-
          setInterval(sendFrames, 2500);
       </script>
    </body>

@@ -3,8 +3,24 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>AttendEase</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
       <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+         }
          /* .div {
             height: 200px;
             width: 200px;
@@ -20,27 +36,35 @@
             height: 20%;
             width: 20%;
          } */
-         body {
+         .container {
             width: 100vw;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
          }
-         div {
-            height: 250px;
-            width: 250px;
-            display: flex;
-            gap: 50px;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
+         .chartDiv {
+            height: 200px;
+            width: 200px;
+            /* display: flex; */
+            /* gap: 50px; */
+            /* align-items: center; */
+            /* flex-direction: column; */
+            /* justify-content: center; */
          }
          section {
+            margin-top: 3vw;
+            margin-left: 3vw;
+         }
+         h1 {
+            margin-top: 5vw;
+            margin-left: 3vw;
+         }
+         /* section {
             padding: 10px 0px;
-            width: 150px;
-            height: 100px;
+            width: 100px;
+            height: 50px;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -54,21 +78,81 @@
          }
          hr {
             width: 80%;
-            height: 2px;
-         }
+            height: 2px; */
+         /* } */
       </style>
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = 'Stylesheets/nav.css') }}"
+      />
    </head>
    <body>
-      <p hidden>{{ session['chartYear'] }}</p>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check1" />
+            <div class="logo">
+               <a href="#">AttendEase</a>
+            </div>
+
+            <!-- <ul>
+               <label class="btn cancel" for="check">
+                  <i class="fas fa-times"> </i>
+               </label> -->
+
+            <!-- <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="#">Contact</a></li> -->
+            <!-- </ul> -->
+         </div>
+      </nav>
+      <label class="button bars" for="check">
+         <i class="fas fa-bars"></i>
+      </label>
+      <input type="checkbox" aria-checked="" id="check" />
+      <div class="side_bar">
+         <ul class="ulList">
+            <div>
+               <img src="{{session['user']['profile']}}" alt="Profile" />
+            </div>
+            <div class="liDiv">
+               <p>{{ session['user']['name'] }}</p>
+               <br />
+               <div>{{session['user']['roll']}}</div>
+            </div>
+            <li>
+               <a href="#"
+                  ><i class="fa fa-columns"></i>&nbsp;&nbsp;Dashboard</a
+               >
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Attendance</a>
+            </li>
+            <li>
+               <a href="#"
+                  ><i class="fa fa-pen-to-square"></i>&nbsp;&nbsp;Edit</a
+               >
+            </li>
+            <li>
+               <a href="#">&nbsp;&nbsp;Logout</a>
+            </li>
+            <div>
+               <label class="button cancel" for="check"
+                  ><i class="fas fa-times"></i>
+               </label>
+            </div>
+         </ul>
+      </div>
+      <div class="topContent">
+         <h1>Attendance Details</h1>
+      </div>
+      <div class="container"></div>
+      <!-- <p>{{ session['chartYear'] }}</p> -->
       <!-- <canvas id="myChart"></canvas> -->
    </body>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <!-- <script src="../static/Javascript/jquery.js"></script> -->
-   <script
-      src="{{ url_for('static', filename='./Javascript/attendanceChart.js') }}"
-   >
-      // <script src="../static/Javascript/attendanceChart.js">
-   </script>
+   <script src="{{ url_for('static', filename='./Javascript/attendanceChart.js') }}"></script>
 </html>

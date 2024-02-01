@@ -5,6 +5,7 @@ import uuid
 from dotenv import load_dotenv
 from flask import  jsonify, request, session
 import numpy as numpy
+import os
 import cv2
 import face_recognition
 from datetime import datetime
@@ -59,6 +60,9 @@ class User:
         except Exception as e:
            return jsonify({'error': f'There is Certain Error in loading the file, try again later {e}', }), 400
 
+    if(request.form.get('Re-password') != request.form.get('password')):
+       return jsonify({'error': 'Re-Enter password and password is not Same', }), 400
+    
     print(request.form.get('password'))
     if(len(request.form.get('password')) < 8):
        return jsonify({'error' : 'Password must contain atleast 8 character'}), 405

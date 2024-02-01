@@ -4,19 +4,89 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Document</title>
+      <link rel="stylesheet" href="../static/Stylesheets/dashboard.css" />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+         rel="stylesheet"
+      />
    </head>
    <body>
-      <div class="card-wrapper">
-         <div class="card">
-            <h1 class="center">Dashboard</h1>
-            <p class="center">You are currently logged in.</p>
+      <div class="loader" style="display: none">
+         <img src="../static/assets/loaders/Loginloader.gif" alt="Key" />
+      </div>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check1" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check">
+                  <i class="fas fa-times"> </i>
+               </label>
+               <!-- <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="#">Contact</a></li> -->
+            </ul>
 
-            <div class="center">
-               <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
-            </div>
+            <label for="check" class="btn bars">
+               <i class="fas fa-bars"></i>
+            </label>
+         </div>
+      </nav>
+      <label class="button bars" for="check"><i class="fas fa-bars"></i></label>
+      <input type="checkbox" id="check" />
+      <div class="side_bar">
+         <div class="title">
+            <div class="logo">AttendEase</div>
+         </div>
+         <ul>
+            <li>
+               <a href="#"><i class="fa fa-home"></i>Home</a>
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-columns"></i>Dashboard</a>
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-users"></i>Team</a>
+            </li>
+            <li>
+               <label class="button cancel" for="check"
+                  ><i class="fas fa-times"></i>
+               </label>
+            </li>
+         </ul>
+      </div>
+
+      <main>
+         <div class="leftDashboard">
+            <h1>Auto Attendance - Face Recognition</h1>
+            <p>IT department, SIES College</p>
+            <button>
+               <a href="/user/select/"> Check your Attendance</a>
+            </button>
+         </div>
+         <div class="rightDashboard">
+            <img src="../static/assets/dashboard-img1.png" alt="" />
          </div>
 
-         <div class="card">
+         <div class="card-wrapper">
+            3
+            <div class="card">
+               <!-- <h1 class="center">Dashboard</h1> -->
+               <!-- <p class="center">You are currently logged in.</p> -->
+
+               <!-- <div class="center">
+               <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
+            </div> -->
+            </div>
+
+            <!-- <div class="card">
             <h2 class="center">Your Info</h2>
             <p>
                <strong>ID:</strong> {{ session['user']['_id'] }}<br />
@@ -24,12 +94,9 @@
                <strong>Email:</strong> {{ session['user']['email'] }}
                <img src="{{session['user']['profile']}}" alt="Profile" />
             </p>
+         </div> -->
          </div>
-      </div>
-
-      <button>
-         <a href="/user/select/"> Check your Attendance</a>
-      </button>
+      </main>
    </body>
    <!-- <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script> -->
    <!-- <script src="{{ url_for('static', filename='./Javascript/year.js') }}"></script> -->

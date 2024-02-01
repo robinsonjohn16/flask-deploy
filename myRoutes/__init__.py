@@ -119,7 +119,6 @@ def facerecognition():
 @app.route("/admin/facerecognition/process_frames/", methods=['POST'])
 @admin_login_required 
 def process():
-  # return processFrame().process_frames()
   return FaceRecDetails().process_frames()
 
 @app.route("/admin/detected/")

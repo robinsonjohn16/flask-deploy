@@ -12,25 +12,28 @@
       />
       <link
          rel="stylesheet"
-         href="{{ url_for('static', filename = '../static/first.css') }}"
+         href="{{ url_for('static', filename = '../static/Stylesheets/year.css') }}"
       />
    </head>
    <body>
       <nav>
-         <div class="left-nav">
-            <li>
-               <a href="#"><b>SIES COLLEGE</b></a>
-            </li>
-            <li>
-               <a href="#">Home</a>
-            </li>
-         </div>
-         <div class="right-nav">
-            <!-- <form name="default-form"> -->
-            <button class="defaultersBtn" name="forwardBtn">
-               <a href="/yearDefaulters">Defaulters</a>
-            </button>
-            <!-- </form> -->
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i
+               ></label>
+               <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="/yearDefaulters">Defaulters</a></li>
+               <!-- <li><a href="#">Feedback</a></li> -->
+            </ul>
+            <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i
+            ></label>
+            <!-- </div> -->
          </div>
       </nav>
       <section>
@@ -49,11 +52,12 @@
                </form>
             </div>
          </div>
+         <div class="right-section">
+            <img src="/static/assets/yearImg.png" alt="Hello" />
+         </div>
       </section>
    </body>
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <script src="{{ url_for('static', filename='./Javascript/year.js') }}"></script>
-
-   <!-- <script src="../static/Javascript/jquery.js"></script> -->
-   <!-- <script src="../static/Javascript/year.js"></script> -->
+   ]
 </html>

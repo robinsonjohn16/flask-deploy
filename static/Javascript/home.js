@@ -41,11 +41,16 @@ $(document).ready(function () {
          processData: false,
          beforeSend: function () {
             $("*").css("cursor", "progress");
+            $(".loader").css("display", "block");
          },
          success: function (resp) {
+            $(".loader").css("display", "none");
+            $("*").css("cursor", "auto");
+
             window.location.href = "/dashboard/";
          },
          error: function (resp) {
+            $(".loader").css("display", "none");
             $(".normal-img").css("display", "none");
             $(".error-img").css("display", "block");
             $error.text(resp.responseJSON.error).removeClass("error--hidden");

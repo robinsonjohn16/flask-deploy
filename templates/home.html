@@ -8,6 +8,7 @@
          rel="stylesheet"
          href="{{ url_for('static', filename = 'Stylesheets/home.css') }}"
       />
+      <!-- <link rel="stylesheet" href="../static/Stylesheets/home.css" /> -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -16,6 +17,9 @@
       />
    </head>
    <body>
+      <div class="loader" style="display: none">
+         <img src="../static/assets/loaders/Loginloader.gif" alt="Key" />
+      </div>
       <nav>
          <div class="menu">
             <input type="checkbox" id="check" />
@@ -80,13 +84,19 @@
                      class="field"
                      required
                   />
-
+                  <label for="Re-password">Re-enter Password</label>
+                  <input
+                     type="password"
+                     name="Re-password"
+                     class="field"
+                     required
+                  />
                   <!-- <input type="submit" value="Sign Up" classs="btn" /> -->
                </div>
                <br />
 
                <div class="form-bottom">
-                  <h5 class="error error--hidden"></h5>
+                  <h3 class="error error--hidden"></h3>
                   <div class="btn-div">
                      <button type="submit" class="btn">Sign UP</button>
                   </div>
@@ -112,4 +122,6 @@
          </div>
       </div>
    </body>
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/home.js') }}"></script>
 </html>

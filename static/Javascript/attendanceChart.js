@@ -48,19 +48,10 @@ subList.forEach((element) => {
          // let hr = document.createElement("hr");
 
          let container = document.querySelector(".container");
-
-         // section.append(h3);
-         // section.append(hr);
-         // section.append(h32);
-
          let div = document.createElement("div");
          div.classList.add("chartDiv");
          div.append(ctx);
          div.append(section);
-         // div.append(subj);
          container.appendChild(div);
-
-         // document.body.appendChild(div);
-         // document.querySelector("div");
       });
 });

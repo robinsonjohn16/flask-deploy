@@ -4,100 +4,218 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Document</title>
-      <link rel="stylesheet" href="../static/Stylesheets/dashboard.css" />
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-      />
+      <!-- Font Awesome -->
+      <script
+         src="https://kit.fontawesome.com/23ffd4fbcb.js"
+         crossorigin="anonymous"
+      ></script>
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
       <link
          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
          rel="stylesheet"
       />
+
+      <link rel="stylesheet" href="../static/Stylesheets/dashboard.css" />
+      <link rel="stylesheet" href="../static/Stylesheets/nav.css" />
    </head>
    <body>
-      <div class="loader" style="display: none">
-         <img src="../static/assets/loaders/Loginloader.gif" alt="Key" />
-      </div>
       <nav>
          <div class="menu">
-            <input type="checkbox" id="check1" />
-            <div class="logo"><a href="#">AttendEase</a></div>
-            <ul>
-               <label class="btn cancel" for="check">
-                  <i class="fas fa-times"> </i>
-               </label>
-               <!-- <li><a href="#">Home</a></li>
-               <li><a href="#">About</a></li>
-               <li><a href="#">Services</a></li>
-               <li><a href="#">Contact</a></li> -->
-            </ul>
-
-            <label for="check" class="btn bars">
-               <i class="fas fa-bars"></i>
-            </label>
+            <!-- <input type="checkbox" id="check1" />s -->
+            <div class="logo">
+               <a href="#">AttendEase</a>
+            </div>
          </div>
       </nav>
-      <label class="button bars" for="check"><i class="fas fa-bars"></i></label>
-      <input type="checkbox" id="check" />
+      <label class="button bars" for="check">
+         <i class="fas fa-bars"></i>
+      </label>
+      <input type="checkbox" aria-checked="" id="check" />
       <div class="side_bar">
-         <div class="title">
-            <div class="logo">AttendEase</div>
-         </div>
-         <ul>
+         <ul class="ulList">
+            <div>
+               <img src="{{session['user']['profile']}}" alt="Profile" />
+            </div>
+            <div class="liDiv">
+               <p>{{ session['user']['name'] or Username}}</p>
+               <br />
+               <div>{{session['user']['roll'] or RollNumber}}</div>
+            </div>
             <li>
-               <a href="#"><i class="fa fa-home"></i>Home</a>
+               <a href="/dashboard"
+                  ><i class="fa fa-columns"></i>&nbsp;&nbsp;Dashboard</a
+               >
             </li>
             <li>
-               <a href="#"><i class="fa fa-columns"></i>Dashboard</a>
+               <a href="/user/select"
+                  ><i class="fa fa-users"></i>&nbsp;&nbsp;Attendance</a
+               >
             </li>
             <li>
-               <a href="#"><i class="fa fa-users"></i>Team</a>
+               <a href="/user/edit"
+                  ><i class="fa fa-pen-to-square"></i>&nbsp;&nbsp;Edit
+                  Profile</a
+               >
             </li>
             <li>
+               <a href="/user/signout"
+                  ><i class="fa-solid fa-right-from-bracket"></i
+                  >&nbsp;&nbsp;Logout</a
+               >
+            </li>
+            <div>
                <label class="button cancel" for="check"
                   ><i class="fas fa-times"></i>
                </label>
-            </li>
+            </div>
          </ul>
       </div>
 
       <main>
          <div class="leftDashboard">
-            <h1>Auto Attendance - Face Recognition</h1>
-            <p>IT department, SIES College</p>
+            <h1>
+               Revolutionizing Attendance Management with Intelligent Face
+               Recognition
+            </h1>
+            <p>
+               Experience the ease of attendance management with AttenEase. Our
+               intelligent app simplifies the entire process, making it
+               effortless for both students and professionals. From automatic
+               tracking to precise identification, we bring you a user-friendly
+               solution that ensures accuracy and security.
+            </p>
             <button>
                <a href="/user/select/"> Check your Attendance</a>
             </button>
          </div>
          <div class="rightDashboard">
-            <img src="../static/assets/dashboard-img1.png" alt="" />
-         </div>
-
-         <div class="card-wrapper">
-            3
-            <div class="card">
-               <!-- <h1 class="center">Dashboard</h1> -->
-               <!-- <p class="center">You are currently logged in.</p> -->
-
-               <!-- <div class="center">
-               <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
-            </div> -->
-            </div>
-
-            <!-- <div class="card">
-            <h2 class="center">Your Info</h2>
-            <p>
-               <strong>ID:</strong> {{ session['user']['_id'] }}<br />
-               <strong>Name:</strong> {{ session['user']['name'] }}<br />
-               <strong>Email:</strong> {{ session['user']['email'] }}
-               <img src="{{session['user']['profile']}}" alt="Profile" />
-            </p>
-         </div> -->
+            <div class="dashboardImg"></div>
+            <!-- <img src="../static/assets/dashboard-img1.png" alt="" /> -->
          </div>
       </main>
+
+      <div class="card-section">
+         <div class="card-heading">
+            *Steps Involved in Face Recognition for Students
+         </div>
+         <div class="card-wrapper">
+            <div class="card">
+               <div class="steps">Step 1</div>
+               <div class="content">Show Your Face and Try to be still.</div>
+            </div>
+
+            <div class="card">
+               <div class="steps">Step 2</div>
+               <div class="content">Recognition process Starts Immediately</div>
+            </div>
+            <div class="card">
+               <div class="steps">Step 3</div>
+               <div class="content">
+                  Your Name will be displayed if recognized
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="card-section">
+         <div class="card-heading">*Benefits</div>
+         <div class="card-wrapper1">
+            <div class="card1">
+               <div class="card-circle">
+                  <img src="../static/assets/save-time.png" alt="Time" />
+               </div>
+               <div class="steps">Time-Saving</div>
+               <div class="content">
+                  Automates attendance tracking, eliminating the need for manual
+                  processes
+               </div>
+            </div>
+            <div class="card1">
+               <div class="card-circle">
+                  <img src="../static/assets/accuracy.png" alt="Accuracy" />
+               </div>
+               <div class="steps">Accuracy</div>
+               <div class="content">
+                  Reduces errors associated with manual attendance marking,
+                  ensuring accurate records.
+               </div>
+            </div>
+            <div class="card1">
+               <div class="card-circle">
+                  <img src="../static/assets/insight.png" alt="Insights" />
+               </div>
+               <div class="steps">Monthly Attendance Insights</div>
+               <div class="content">
+                  Enables data-driven decision-making by providing insights into
+                  attendance trends and patterns over time.
+               </div>
+            </div>
+            <div class="card1">
+               <div class="card-circle">
+                  <img
+                     src="../static/assets/customization.png"
+                     alt="Customization"
+                  />
+               </div>
+               <div class="steps">Customization</div>
+               <div class="content">
+                  Offers customization options to adapt to the specific needs of
+                  educational institutions or organizations.
+               </div>
+            </div>
+            <div class="card1">
+               <div class="card-circle">
+                  <img src="../static/assets/monitoring.png" alt="Monitoring" />
+               </div>
+               <div class="steps">Real-Time Monitoring</div>
+               <div class="content">
+                  Provides real-time updates on attendance, allowing instant
+                  access to information when needed.
+               </div>
+            </div>
+            <div class="card1">
+               <div class="card-circle">
+                  <img src="../static/assets/twins.png" alt="Twins" />
+               </div>
+               <div class="steps">Differentiation Between Identical Twins</div>
+               <div class="content">
+                  Unique capability to distinguish between identical twins,
+                  enhancing accuracy in attendance tracking.
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- *Monthly Attendance  -->
+      <div class="month-section">
+         <div class="month-section-left">
+            <div class="month-heading">View Monthly Attendance</div>
+            <div class="month-subheading">
+               Stay informed with our user-friendly interface that lets you
+               access and analyze attendance data on a monthly basis. Track
+               attendance trends, identify patterns, and make data-driven
+               decisions effortlessly.
+            </div>
+         </div>
+         <div class="month-section-right">
+            <div class="month-container"></div>
+         </div>
+      </div>
+
+      <footer>
+         <hr />
+         <div class="foot-content">
+            <img src="../static/assets/copyright.png" alt="C" />
+            Copyright 2024. All Rights Reserved, Website by Robinson
+         </div>
+      </footer>
    </body>
-   <!-- <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script> -->
-   <!-- <script src="{{ url_for('static', filename='./Javascript/year.js') }}"></script> -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/year.js') }}"></script>
+
+   <!-- <script src="../static/Javascript/jquery.js"></script> -->
+   <!-- <script src="../static/Javascript/dashboard.js"></script> -->
 </html>

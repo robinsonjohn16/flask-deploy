@@ -11,20 +11,80 @@
          rel="stylesheet"
       />
       <link
-         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
          rel="stylesheet"
-         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-         crossorigin="anonymous"
+         href="{{ url_for('static', filename = 'Stylesheets/nav.css') }}"
       />
-      <script
-         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-         crossorigin="anonymous"
-      ></script>
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = 'Stylesheets/selectMonth.css') }}"
+      />
    </head>
    <body>
-      <div class="text"><h2>Select the Appropriate Year</h2></div>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i
+               ></label>
+               <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Services</a></li>
+               <li><a href="#">Contact</a></li>
+               <!-- <li><a href="#">Feedback</a></li> -->
+            </ul>
+            <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i
+            ></label>
+            <!-- </div> -->
+         </div>
+      </nav>
 
+      <div class="container">
+         <div class="leftContainer">
+            <div class="info">Select the Appropriate Year</div>
+            <form name="month-def-form">
+               <!-- <label class="labelForm" for="roll">Roll Number</label>
+               <input type="roll" name="roll" class="field" required />
+               <label class="labelForm" for="selectMonth">Select Month</label> -->
+
+               <select name="selectOption">
+                  <option selected>Select The Year</option>
+                  <option value="FY-IT" name="Fy">FY-IT</option>
+                  <option value="SY-IT" name="Sy">SY-IT</option>
+                  <option value="TY-IT" name="Ty">TY-IT</option>
+               </select>
+
+               <select name="selectMonth">
+                  <option selected>Select The Month</option>
+                  <option value="January" name="January">January</option>
+                  <option value="February" name="Sy">February</option>
+                  <option value="March" name="Ty">March</option>
+                  <option value="April" name="Ty">April</option>
+                  <option value="May" name="Ty">May</option>
+                  <option value="June" name="Ty">June</option>
+                  <option value="July" name="Ty">July</option>
+                  <option value="August" name="Ty">August</option>
+                  <option value="September" name="Ty">September</option>
+                  <option value="October" name="Ty">October</option>
+                  <option value="November" name="Ty">November</option>
+                  <option value="December" name="Ty">December</option>
+               </select>
+               <button class="btn btnnextButton"><b>Next</b></button>
+               <p class="error error--hidden"></p>
+            </form>
+         </div>
+         <div class="rightContainer">
+            <img
+               src="{{ url_for('static',
+            filename='./assets/selectMonth-img1.png') }}"
+            />
+         </div>
+      </div>
+
+      <!-- <div class="text"><h2></h2></div> -->
+      <!-- 
       <form name="month-def-form">
          <select name="selectOption">
             <option selected>Select The Year</option>
@@ -53,7 +113,7 @@
          <button class="btn btn-secondary nextButton" type="submit">
             <b>Next</b>
          </button>
-      </form>
+      </form> -->
    </body>
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <script src="{{ url_for('static', filename='./Javascript/month-defaulter.js') }}"></script>

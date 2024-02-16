@@ -6,10 +6,13 @@
       <title>AttendEase</title>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-      />
+
+      <!-- Font Awesome -->
+      <script
+         src="https://kit.fontawesome.com/23ffd4fbcb.js"
+         crossorigin="anonymous"
+      ></script>
+
       <link
          href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
          rel="stylesheet"
@@ -116,25 +119,31 @@
                <img src="{{session['user']['profile']}}" alt="Profile" />
             </div>
             <div class="liDiv">
-               <p>{{ session['user']['name'] }}</p>
+               <p>{{ session['user']['name'] or Username}}</p>
                <br />
-               <div>{{session['user']['roll']}}</div>
+               <div>{{session['user']['roll'] or RollNumber}}</div>
             </div>
             <li>
-               <a href="#"
+               <a href="/dashboard"
                   ><i class="fa fa-columns"></i>&nbsp;&nbsp;Dashboard</a
                >
             </li>
             <li>
-               <a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Attendance</a>
-            </li>
-            <li>
-               <a href="#"
-                  ><i class="fa fa-pen-to-square"></i>&nbsp;&nbsp;Edit</a
+               <a href="/user/select/"
+                  ><i class="fa fa-users"></i>&nbsp;&nbsp;Attendance</a
                >
             </li>
             <li>
-               <a href="#">&nbsp;&nbsp;Logout</a>
+               <a href="#"
+                  ><i class="fa fa-pen-to-square"></i>&nbsp;&nbsp;Edit
+                  Profile</a
+               >
+            </li>
+            <li>
+               <a href="/user/signout"
+                  ><i class="fa-solid fa-right-from-bracket"></i
+                  >&nbsp;&nbsp;Logout</a
+               >
             </li>
             <div>
                <label class="button cancel" for="check"

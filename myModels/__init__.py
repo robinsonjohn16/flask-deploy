@@ -115,6 +115,17 @@ class User:
         if db.users.find_one({"email": user["email"]}):
             return jsonify({"error": "Email address already in use"}), 400
 
+        # Check for existing Roll Number
+        if db.users.find_one({"roll": user["roll"]}):
+            return (
+                jsonify(
+                    {
+                        "error": "Roll Number already in use, Login to your Account Instead"
+                    }
+                ),
+                400,
+            )
+
         if db.users.insert_one(user):
             return self.start_session(user)
 
@@ -337,10 +348,43 @@ class Admin:
         session.clear()
         return redirect("/")
 
+    def finalList(self):
+        tempDict = {}
+        data = float(request.args.get("percentageSelected"))
+        # print(session["defaulters"])
+        if not data:
+            return jsonify({"error": "Data didn't Reached Backend"}), 400
+        for i, j in dict(session["defaulters"]).items():
+            # print("J" ,float(j))
+            if j == 51.43:
+                tempDict[i] = j
+                print(j)
+            else:
+                continue
+        session["updatedDefaulters"] = tempDict
+        return jsonify({"message": session["updatedDefaulters"]}), 200
+
+    def sendMail(self):
+        if not session["updatedDefaulters"]:
+            return jsonify({"error": "No defaulters Data"}), 400
+        parentMailList = []
+        for roll in session["updatedDefaulters"].values():
+            db = client.user_login_system
+            # dbUser = db.users.find({"roll": roll}, {"_id": 0, "parentMail": 1})
+            dbUser = db.users.find_one({"roll": roll})
+
+            # print("Parent mail", dbUser)
+            # for i in dbUser:
+            # idealAttendance = idealAttendance + i["attendance"]
+            print("i", dbUser["parentMail"])
+            # idealAttendanceForSubject = collectionIdeal.find(
+            # {"_id": subject}, {"_id": 0, "attendance": 1}
+            # )
+            # "parentMail": request.form.get("parMail"),
+
 
 # *Face Recoginition details
 class FaceRecDetails:
-
     def end_session(self, session_name):
         session.pop(session_name)
         return 0

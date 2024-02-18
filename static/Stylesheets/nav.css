@@ -52,6 +52,35 @@ nav .menu {
    transform: translate(-50%, -50%);
    text-align: center;
 }
+.authBtn {
+   position: absolute;
+   padding: 1em;
+   box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+   transition: all 0.2s ease-in-out;
+   cursor: pointer;
+   text-align: center;
+   font-size: 1.2em;
+   border-radius: 10px;
+   &:hover {
+      box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+   }
+}
+.authBtn a {
+   color: #000;
+}
+.signup {
+   top: 10px;
+   right: 10em;
+}
+.login {
+   top: 10px;
+   right: 17em;
+}
+.admin {
+   top: 10px;
+   right: 3em;
+}
+
 .upper {
    font-size: 40px;
    font-weight: 600;

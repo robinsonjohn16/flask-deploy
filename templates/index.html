@@ -18,7 +18,7 @@
          rel="stylesheet"
       />
 
-      <link rel="stylesheet" href="../static/Stylesheets/dashboard.css" />
+      <link rel="stylesheet" href="../static/Stylesheets/index.css" />
       <link rel="stylesheet" href="../static/Stylesheets/nav.css" />
    </head>
    <body>
@@ -29,7 +29,12 @@
                <a href="#">AttendEase</a>
             </div>
          </div>
+         {% if not session['user'] %}
+         <div class="signup authBtn"><a href="/signup">Sign Up</a></div>
+         <div class="login authBtn"><a href="/login">Log In</a></div>
+         <div class="admin authBtn"><a href="/admin">Admin</a></div>
       </nav>
+      {% else %}
       <label class="button bars" for="check">
          <i class="fas fa-bars"></i>
       </label>
@@ -73,6 +78,7 @@
             </div>
          </ul>
       </div>
+      {% endif %}
 
       <main>
          <div class="leftDashboard">
@@ -88,7 +94,7 @@
                solution that ensures accuracy and security.
             </p>
             <button>
-               <a href="/user/select/"> Check your Attendance</a>
+               <a href="/user/select/">Check your Attendance</a>
             </button>
          </div>
          <div class="rightDashboard">

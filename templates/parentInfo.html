@@ -19,7 +19,7 @@
       />
       <link
          rel="stylesheet"
-         href="{{ url_for('static', filename = 'Stylesheets/defaulters.css') }}"
+         href="{{ url_for('static', filename = 'Stylesheets/parentInfo.css') }}"
       />
       <link
          rel="stylesheet"
@@ -38,47 +38,50 @@
                <li><a href="#">Home</a></li>
                <li><a href="/admin/detected">Detected Faces</a></li>
                <li><a href="/admin/submit">Subject</a></li>
-               <!-- <li><a href="/yearDefaulters">Defaulters</a></li> -->
-               <!-- <li><a href="#">Feedback</a></li> -->
             </ul>
-            <!-- <label for="check" class="btn bars"
-               ><i class="fas fa-bars"></i>
-            </label> -->
-            <!-- </div> -->
          </div>
       </nav>
       <section>
          <div class="left-section">
-            <table>
-               <tr>
-                  <th>Roll Number</th>
-                  <th>Attendance %</th>
-               </tr>
-               {% for key, value in session['defaulters'].items() %}
-               <tr>
-                  <td>{{key}}</td>
-                  <td>{{value}}</td>
-                  <td class="table-data hidden"></td>
-               </tr>
-               {% endfor %}
-            </table>
-         </div>
-         <div class="right-section">
-            <button class="info-parents">
-               <a href="/admin/parentInfo">Inform Their Parents</a>
-            </button>
+            <div class="left-heading">
+               Select the Defaulters Mail sending Criteria
+            </div>
             <select name="selectOption" class="right-select">
                <option selected>Select Options</option>
                <option value="50">Less than 50%</option>
                <option value="75">Less than 75%</option>
                <option value="90">Less than 90%</option>
             </select>
-            <button class="right-btn">Check</button>
+            <button class="right-btn">Next</button>
+            {% if session['updatedDefaulters'] %}
+            <div class="updatedDef">
+               <table>
+                  <tr>
+                     <th>Roll Number</th>
+                     <th>Attendance %</th>
+                  </tr>
+                  {% for key, value in session['updatedDefaulters'].items() %}
+                  <tr>
+                     <td>{{key}}</td>
+                     <td>{{value}}</td>
+                     <td class="table-data hidden"></td>
+                  </tr>
+                  {% endfor %}
+               </table>
+            </div>
+            {% endif %}
+         </div>
+         <div class="right-section">
+            {% if session['updatedDefaulters'] %}
+            <button>
+               <a href="/admin/sendMail">Send the mail for this list</a>
+            </button>
+            {% endif %}
          </div>
       </section>
    </body>
 
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
-   <script src="{{ url_for('static', filename='./Javascript/defaulters.js') }}"></script>
+   <script src="{{ url_for('static', filename='./Javascript/parentInfo.js') }}"></script>
 </html>

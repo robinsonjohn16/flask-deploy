@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -8,13 +8,78 @@
    <body>
       <button><a href="/admin/submit">Submit the Data</a></button>
       <ol>
-         <!-- {% for roll, per in listFinal%}
-      <li>{{ roll }} - {{per}}</li>
-      {% endfor %} -->
 
          {{ session['DetectedList']}}
       </ol>
 
       <div>{{err}}</div>
+   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>AttendEase | Defaulters</title>
+
+      <!-- Font Awesome -->
+      <script
+         src="https://kit.fontawesome.com/23ffd4fbcb.js"
+         crossorigin="anonymous"
+      ></script>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="{{ url_for('static', filename = 'Stylesheets/detectedFaces.css') }}"
+      />
+   </head>
+   <body>
+      <nav>
+         <div class="menu">
+            <input type="checkbox" id="check" />
+            <div class="logo"><a href="#">AttendEase</a></div>
+            <ul>
+               <label class="btn cancel" for="check"
+                  ><i class="fas fa-times"></i>
+               </label>
+               <li><a href="#">Home</a></li>
+               <li><a href="/admin/detected">Detected Faces</a></li>
+               <li><a href="/admin/submit">Subject</a></li>
+               <!-- <li><a href="/yearDefaulters">Defaulters</a></li> -->
+               <!-- <li><a href="#">Feedback</a></li> -->
+            </ul>
+            <!-- <label for="check" class="btn bars"
+               ><i class="fas fa-bars"></i>
+            </label> -->
+            <!-- </div> -->
+         </div>
+      </nav>
+      <div class="faces">
+         <table>
+            <tr>
+               <th>Roll Number</th>
+               <th>Attendance %</th>
+               <!-- <th>Graph</th> -->
+            </tr>
+            {% for key, value in session['defaulters'].items() %}
+            <tr>
+               <td>{{key}}</td>
+               <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+            <!-- <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+         </tr> -->
+         </table>
+      </div>
    </body>
 </html>

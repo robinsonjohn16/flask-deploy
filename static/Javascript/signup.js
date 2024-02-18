@@ -47,7 +47,7 @@ $(document).ready(function () {
             $(".loader").css("display", "none");
             $("*").css("cursor", "auto");
 
-            window.location.href = "/dashboard/";
+            window.location.href = "/";
          },
          error: function (resp) {
             $(".loader").css("display", "none");

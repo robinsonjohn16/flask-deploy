@@ -32,23 +32,22 @@ def admin_login_required(f):
 # Routes
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
 
-@app.route("/login/")
+@app.route("/login/", methods=["GET"])
 def loginHtml():
     return render_template("login.html")
 
 
-@app.route("/admin/")
+@app.route("/admin/", methods=["GET"])
 def adminLogin():
     return render_template("adminLogin.html")
 
 
-@app.route("/dashboard/")
-@login_required
+@app.route("/signup/", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("signup.html")
 
 
 @app.route("/user/signup/", methods=["POST"])
@@ -102,7 +101,6 @@ def yearCheck():
 @app.route("/admin/subject/")
 @admin_login_required
 def subject():
-
     return render_template(
         "subject.html", year=session["year"], subjectList=session["subjects"]
     )
@@ -176,9 +174,15 @@ def userMonthDis():
     )
 
 
+# API for frontend
 @app.route("/api/attenanceList/")
 def listAttend():
     return jsonify(session["monthAttendance"])
+
+
+@app.route("/api/attendancePercentMon/")
+def percentMon():
+    return jsonify(session["defaulters"])
 
 
 # Defaulters
@@ -197,9 +201,24 @@ def defaultersCheck():
 
 
 @admin_login_required
-@app.route("/admin/defaulters/", methods=["GET"])
+@app.route("/admin/defaulters/", methods=["GET", "POST"])
 def defaulters():
-    # return render_template(
-    # "defaulters.html", res=zip(session["rollNum"], session["percentage"])
-    # )
     return render_template("defaulters.html")
+
+
+@admin_login_required
+@app.route("/admin/parentInfo/", methods=["GET"])
+def parentInfo():
+    return render_template("parentInfo.html")
+
+
+@admin_login_required
+@app.route("/admin/parentCalculate/", methods=["GET"])
+def parentCal():
+    return Admin().finalList()
+
+
+@admin_login_required
+@app.route("/admin/sendMail/", methods=["GET"])
+def Mail():
+    return Admin().sendMail()

@@ -1,4 +1,4 @@
-function GenerateGraph(percent) {
+function GenerateGraph(percent, label) {
    fetch("/api/attendancePercentMon")
       .then((res) => {
          return res.json();
@@ -16,10 +16,10 @@ function GenerateGraph(percent) {
          // console.log(`${roll} and ${dat[roll]}`);
          let ctx = document.createElement("canvas");
          const data = {
-            labels: ["Present %", "Absent %"],
+            labels: ["Present", "Absent"],
             datasets: [
                {
-                  label: `Attendance`,
+                  label: `Attendance of `,
                   // data: [dat[element][0], dat[element][1] - dat[element][0]],
                   data: [cleared, notCleared],
                   backgroundColor: ["rgb(248,141,41)", "rgb(89,81,231)"],
@@ -36,8 +36,11 @@ function GenerateGraph(percent) {
             type: "doughnut",
             data,
          });
-         const table_data = document.querySelector(".right-section");
-         table_data.append(ctx);
+         const table_data = document.querySelector(".right-container");
+         // let div = document.createElement("div");
+         // div.classList.add("right-container");
+         // div.append(ctx);
+         table_data.appendChild(ctx);
          // });
          // }
       });
@@ -45,5 +48,6 @@ function GenerateGraph(percent) {
 document.querySelector(".right-btn").addEventListener("click", (e) => {
    const percent = document.querySelector(".right-select").value;
    // let percent = e.val;
-   if (percent !== "Select Options") GenerateGraph(percent);
+   const label = document.querySelector(".right-select").textContent;
+   if (percent !== "Select Options") GenerateGraph(percent, label);
 });

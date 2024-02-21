@@ -8,9 +8,6 @@ $("form[name=month-def-form").submit(function (e) {
       type: "POST",
       data: data,
       dataType: "json",
-      beforeSend: function () {
-         $("*").css("cursor", "wait");
-      },
       success: function (resp) {
          window.location.href = "/admin/defaulters";
       },

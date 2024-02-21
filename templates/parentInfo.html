@@ -53,8 +53,11 @@
                <option value="90">Less than 90%</option>
             </select>
             <button class="right-btn">Next</button>
+
+            <h3 class="error error--hidden"></h3>
+
             {% if session['updatedDefaulters'] %}
-            <div class="updatedDef">
+            <div class="updatedDef" id="updateTable">
                <table>
                   <tr>
                      <th>Roll Number</th>
@@ -73,15 +76,50 @@
          </div>
          <div class="right-section">
             {% if session['updatedDefaulters'] %}
-            <button>
-               <a href="/admin/sendMail">Send the mail for this list</a>
-            </button>
+            <div class="headin-container">
+               <div class="left-heading">Mail Details :</div>
+               <div class="left-subheading">
+                  Enter Teacher Name, You can Auto fill the Subject and Content
+                  from Auto-Fill Button.
+               </div>
+            </div>
+            <form name="teacher-info">
+               <label for="name">Teacher's Name Who is sending the mail</label>
+               <input type="text" name="name" class="field name" required />
+
+               <label for="subject">Ready-made Subject</label>
+               <textarea
+                  type="text"
+                  name="subject"
+                  class="field subject"
+                  readonly
+               >
+               </textarea>
+
+               <label for="content">Ready-Made Content</label>
+               <textarea
+                  type="text"
+                  name="content"
+                  class="field content"
+                  readonly
+               >
+               </textarea>
+               <h4 class="error1 error--hidden"></h4>
+            </form>
+            <div class="button-container">
+               <button class="left-autoFill">Auto-Fill</button>
+               <button class="left-btn">Send the mail</button>
+            </div>
+            {% else %}
+            <img
+               src="{{ url_for('static',
+            filename='./assets/parentInfo.png') }}"
+               alt=""
+            />
             {% endif %}
          </div>
       </section>
    </body>
-
-   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <script src="{{ url_for('static', filename='./Javascript/parentInfo.js') }}"></script>
 </html>

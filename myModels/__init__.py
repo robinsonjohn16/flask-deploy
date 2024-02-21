@@ -11,6 +11,7 @@ import face_recognition
 from datetime import datetime
 from app import app
 from ordered_set import OrderedSet
+import smtplib
 from myEncoding import TyEncodingFirst
 from myEncoding import TyEncodingSecond
 from myEncoding import TyNameList
@@ -58,9 +59,9 @@ class User:
             if filename != "":
                 try:
                     cloudinary.config(
-                        cloud_name=os.getenv("cloud_name"),
-                        api_key=os.getenv("api_key"),
-                        api_secret=os.getenv("api_secret"),
+                        cloud_name=os.getenv("CLOUD_NAME"),
+                        api_key=os.getenv("API_KEY"),
+                        api_secret=os.getenv("API_SECRET"),
                     )
                     cloudinary_res = cloudinary.uploader.upload(
                         os.path.join(app.config["UPLOAD_FOLDER"], filename)
@@ -104,7 +105,7 @@ class User:
             "roll": request.form.get("roll"),
             "year": request.form["selectOption"],
             # "year": request.form.get('year'),
-            "parentMail": request.form.get("parMail"),
+            "parentMail": request.form.get("pmail"),
             "profile": cloudinary_res["url"],
         }
 
@@ -197,6 +198,31 @@ class User:
 
 
 class Admin:
+
+    subject = "Important: Your Child's Monthly Attendance Report"
+
+    def emailContent(self, nameParent, studentName, finalAttendance, teacherName):
+        return f"""
+Dear {nameParent},
+I hope this email finds you well. We would like to bring to your attention the attendance report for your child, {studentName}, for the month of this Month. Unfortunately, the final attendance percentage falls below the required criteria of 75%.
+
+Monthly Attendance Summary:
+Final Attendance: {finalAttendance}%
+
+We understand that circumstances may vary, and there could be reasons for absenteeism. However, maintaining regular attendance is crucial for academic success. Consistent attendance ensures that your child remains engaged in the learning process and benefits fully from the educational experience.
+
+If there are any specific challenges or concerns affecting your child's attendance, please feel free to reach out to us. We are here to support and work together to address any issues that may be impacting attendance.
+
+We encourage open communication between parents, students, and teachers to ensure the best possible educational outcomes. Your involvement and support are integral to the success of your child's academic journey.
+
+Thank you for your attention to this matter, and we look forward to working together to maintain a positive and supportive learning environment.
+
+Best Regards,
+
+{teacherName}
+SIES College of Arts, Science and Commerce. Sion(West)
+"""
+
     def start_session(self, admin):
         del admin["password"]
         session["admin_logged_in"] = True
@@ -211,8 +237,8 @@ class Admin:
             "name": request.form.get("name"),
             "password": request.form.get("password"),
         }
-        username = os.getenv("admin_username")
-        passw = os.getenv("admin_password")
+        username = os.getenv("ADMIN_USERNAME")
+        passw = os.getenv("ADMIN_PASSWORD")
         print(type(admin["name"]))
         print(type(admin["password"]))
         if admin["name"] == username and admin["password"] == passw:
@@ -220,68 +246,10 @@ class Admin:
             return self.start_session(admin)
         return jsonify({"error": "Username or password is incorrect"}), 400
 
-    # def defaultersCheck(self):
-    #     selectedYeardefaulters = request.form["selectOption"]
-    #     print(selectedYeardefaulters)
-    #     if selectedYeardefaulters == "FY-IT":
-    #         subjectList = ["EIT", "AWP", "NGT", "AI", "LA"]
-    #     if selectedYeardefaulters == "SY-IT":
-    #         subjectList = ["AM", "PP", "DBMS", "DS", "CN"]
-    #     if selectedYeardefaulters == "TY-IT":
-    #         subjectList = ["WP", "DM", "CS", "IP", "DM"]
-
-    #     selectMonthDefaluters = request.form["selectMonth"]
-    #     list2 = []
-    #     dict_of_ty = TyNameList.TyNameDict
-    #     for i, j in dict_of_ty.items():
-    #         list2.append(i)
-    #     rollNumList = []
-    #     percentageList = []
-    #     try:
-    #         # app.config[
-    #         #     "MONGO_URI"
-    #         # ] = "mongodb+srv://robinsonjohnsies:Robinson#123@cluster0.nw9jhv3.mongodb.net/?retryWrites=true&w=majority"
-    #         # mongo = PyMongo(app)
-    #         idealAttendance = 0
-    #         for subject in subjectList:
-    #             dbName = f"{selectedYeardefaulters}-{selectMonthDefaluters}"
-    #             # db = mongo.cx[dbName]
-    #             db = client[dbName]
-    #             collectionIdeal = db["idealCollection"]
-    #             idealAttendanceForSubject = collectionIdeal.find(
-    #                 {"_id": subject}, {"_id": 0, "attendance": 1}
-    #             )
-
-    #             for i in idealAttendanceForSubject:
-    #                 idealAttendance = idealAttendance + i["attendance"]
-
-    #         for rollNum in list2:
-    #             total = 0
-    #             for subject in subjectList:
-    #                 print(subject)
-    #                 collection = db[subject]
-    #                 subjectAttendance = collection.find(
-    #                     {"_id": rollNum}, {"_id": 0, "attendance": 1}
-    #                 )
-    #                 for att in subjectAttendance:
-    #                     total = total + att["attendance"]
-
-    #             final_percentage = (total / idealAttendance) * 100
-    #             final_percentage = round(final_percentage, 2)
-    #             final_percentage = round(final_percentage, 2)
-    #             print(rollNum, final_percentage)
-    #             # finalDict[rollNumString] = final_percentage
-    #             rollNumList.append(rollNum)
-    #             percentageList.append(final_percentage)
-
-    #         session['rollNum'] = rollNumList
-    #         session['percentage'] = percentageList
-    #         return jsonify({"DONE"}), 20
-    #     except Exception as e:
-    #       return jsonify({ "error": "Signup failed" }), 400
-    #         # return render_template("defaulters.html", err=f"Error!! Call Robinson {e}")
-
     def defaultersCheck(self):
+        # if not request.session.get("updatedDefaulters", False):
+        #     session.pop("updatedDefaulters")
+
         selectedYeardefaulters = request.form["selectOption"]
         print(selectedYeardefaulters)
         if selectedYeardefaulters == "FY-IT":
@@ -293,10 +261,11 @@ class Admin:
 
         selectMonthDefaluters = request.form["selectMonth"]
         list2 = []
+        session["monthDefaulters"] = selectMonthDefaluters
         dict_of_ty = TyNameList.TyNameDict
         for i, j in dict_of_ty.items():
             list2.append(i)
-        print(list2)
+        # print(list2)
         rollNumList = []
         final_def = {}
         percentageList = []
@@ -314,12 +283,12 @@ class Admin:
                 # print(idealAttendanceForSubject)
                 for i in idealAttendanceForSubject:
                     idealAttendance = idealAttendance + i["attendance"]
-                    print("i", i["attendance"])
-            print("Ideal Total", idealAttendance)
+                    # print("i", i["attendance"])
+            # print("Ideal Total", idealAttendance)
 
             for rollNum in list2:
                 total = 0
-                print(rollNum)
+                # print(rollNum)
                 for subject in subjectList:
                     print(subject)
                     collection = db[subject]
@@ -332,7 +301,7 @@ class Admin:
                 final_percentage = (total / idealAttendance) * 100
                 final_percentage = round(final_percentage, 2)
                 final_percentage = round(final_percentage, 2)
-                print(rollNum, final_percentage)
+                # print(rollNum, final_percentage)
                 rollNumList.append(rollNum)
                 # session("rollNum")
                 # session("final_percentage")
@@ -351,12 +320,11 @@ class Admin:
     def finalList(self):
         tempDict = {}
         data = float(request.args.get("percentageSelected"))
-        # print(session["defaulters"])
+
         if not data:
             return jsonify({"error": "Data didn't Reached Backend"}), 400
         for i, j in dict(session["defaulters"]).items():
-            # print("J" ,float(j))
-            if j == 51.43:
+            if j > data:
                 tempDict[i] = j
                 print(j)
             else:
@@ -365,22 +333,48 @@ class Admin:
         return jsonify({"message": session["updatedDefaulters"]}), 200
 
     def sendMail(self):
+        data = str(request.args.get("teacherName"))
         if not session["updatedDefaulters"]:
             return jsonify({"error": "No defaulters Data"}), 400
-        parentMailList = []
-        for roll in session["updatedDefaulters"].values():
+        # parentMailList = []
+        for roll in session["updatedDefaulters"].keys():
+            print(roll)
             db = client.user_login_system
-            # dbUser = db.users.find({"roll": roll}, {"_id": 0, "parentMail": 1})
             dbUser = db.users.find_one({"roll": roll})
+            if dbUser is None or dbUser["parentMail"] is None:
+                return jsonify(
+                    {
+                        "error": f"Roll Number : {roll} Haven't Provided their Parent Mail id"
+                    }
+                )
+            # if not dbUser["parentMail"]:
+            # continue
+            # print("i", dbUser["parentMail"])
+            # parentMailList.append(dbUser["parentMail"])
+            # Sending the mail
+            try:
+                senderEmailId = os.getenv("SMTP_EMAIL_ID")
+                appPassword = os.getenv("SMTP_EMAIL_PASSWORD")
+                mailContent = f"""Subject: {self.subject} \n\n {self.emailContent(dbUser["parentMail"], dbUser['name'], session["updatedDefaulters"][roll], data)}"""
+                server = smtplib.SMTP("smtp.gmail.com", 587)
+                server.starttls()
+                server.login(senderEmailId, appPassword)
+                server.sendmail(senderEmailId, dbUser["parentMail"], mailContent)
+            except Exception as e:
+                session.pop("updatedDefaulters")
+                return jsonify({"error": "Error While sending the mail"}), 401
+        session.pop("updatedDefaulters")
+        return jsonify({"message": "Success"}), 200
 
-            # print("Parent mail", dbUser)
-            # for i in dbUser:
-            # idealAttendance = idealAttendance + i["attendance"]
-            print("i", dbUser["parentMail"])
-            # idealAttendanceForSubject = collectionIdeal.find(
-            # {"_id": subject}, {"_id": 0, "attendance": 1}
-            # )
-            # "parentMail": request.form.get("parMail"),
+        # for email in parentMailList:
+
+    def pullForm(self):
+        return (
+            jsonify(
+                {"subject": self.subject, "content": self.emailContent("", "", "", "")}
+            ),
+            200,
+        )
 
 
 # *Face Recoginition details
@@ -489,7 +483,7 @@ class FaceRecDetails:
         if not name or not password:
             return jsonify({"error": "Name and Password is required"}), 400
 
-        if name == os.getenv("submitID") and password == os.getenv("submitPassword"):
+        if name == os.getenv("SUBMIT_ID") and password == os.getenv("SUBMIT_PASSWORD"):
             return jsonify({"error": "Credentials are not correct"}), 401
         try:
             detecDist = session["DetectedList"]

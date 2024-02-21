@@ -51,7 +51,7 @@
                </label>
                <li><a href="#">Home</a></li>
                <li><a href="/admin/detected">Detected Faces</a></li>
-               <li><a href="/admin/submit">Subject</a></li>
+               <li><a href="/admin/submit">Submit</a></li>
                <!-- <li><a href="/yearDefaulters">Defaulters</a></li> -->
                <!-- <li><a href="#">Feedback</a></li> -->
             </ul>
@@ -62,23 +62,19 @@
          </div>
       </nav>
       <div class="faces">
+         <div class="left-heading">Detected faces So Far</div>
          <table>
             <tr>
                <th>Roll Number</th>
                <th>Attendance %</th>
                <!-- <th>Graph</th> -->
             </tr>
-            {% for key, value in session['defaulters'].items() %}
+            {% for key, value in session["DetectedList"].items() %}
             <tr>
                <td>{{key}}</td>
                <td>{{value}}</td>
             </tr>
             {% endfor %}
-            <!-- <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-         </tr> -->
          </table>
       </div>
    </body>

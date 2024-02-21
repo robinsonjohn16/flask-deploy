@@ -13,21 +13,38 @@ table {
    box-sizing: border-box;
    border-radius: 0.6em;
 }
+h5 {
+   margin-top: 2em;
+}
 table:hover {
    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
 }
-html {
-   scroll-behavior: smooth;
-   scroll-padding: 15em;
-}
+
 td,
 th {
    margin: auto;
    font-size: 1.5em;
    padding: 1em;
 }
+.left-heading {
+   font-size: 2.2em;
+   font-weight: 600;
+}
+.left-subheading {
+   margin-top: 1em;
+   color: #5f5f5f;
+   font-size: 1.3em;
+}
 td {
    padding-left: 2em;
+}
+.right-section {
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 4em;
+   /* justify-content: center; */
 }
 body {
    font-size: 10px;
@@ -39,8 +56,83 @@ section {
    margin-top: 9em;
    display: flex;
    justify-content: center;
-   height: 70%;
+   /* height: 70%; */
 }
+form {
+   height: 40em;
+   width: 70%;
+   /* margin: auto; */
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 10px;
+   padding-bottom: 2em;
+}
+
+button,
+.field {
+   border: 0;
+   outline: 0;
+   border-radius: 10px;
+   /* padding: 0.45em; */
+   font-weight: 400;
+   background-color: #ebecf0;
+   text-shadow: 1px 1px 0 #fff;
+}
+.field {
+   width: 25em;
+   height: 2.5em;
+}
+
+label {
+   display: block;
+   margin-left: 4em;
+   align-self: flex-start;
+   margin-bottom: 0.1em;
+   margin-top: 1em;
+   color: #61677c;
+   font-size: 1.4em;
+}
+
+.field,
+select,
+form {
+   box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+   box-sizing: border-box;
+   transition: all 0.2s ease-in-out;
+
+   &:focus {
+      box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+   }
+}
+
+/* button {
+   height: 12%;
+   color: #3498db;
+   padding: 1em 1em;
+   box-shadow: -5px -5px 20px #fff, 5px 5px 20px #babecc;
+   transition: all 0.2s ease-in-out;
+   cursor: pointer;
+   &:hover {
+      box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+   }
+
+   &:active {
+      box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+   }
+} */
+.button-container {
+   display: flex;
+   gap: 5em;
+}
+
+form a {
+   font-size: 1.4em;
+   color: #3498db;
+}
+
 .left-section {
    width: 50%;
    display: flex;
@@ -50,15 +142,19 @@ section {
    /* justify-content: center; */
    /* margin: auto; */
 }
-.right-section {
-   width: 50%;
-   height: 30em;
-   flex-direction: column;
-   /* display: flex;
-   align-items: flex-start;
-   justify-content: flex-start; */
-}
 
+input,
+textarea {
+   align-content: center;
+   text-indent: 1em;
+   color: #5f5f5f;
+}
+.subject {
+   padding-top: 0.8em;
+}
+.content {
+   height: 10em;
+}
 select {
    width: 25em;
    height: 2.5em;

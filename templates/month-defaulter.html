@@ -45,10 +45,6 @@
          <div class="leftContainer">
             <div class="info">Select the Appropriate Year</div>
             <form name="month-def-form">
-               <!-- <label class="labelForm" for="roll">Roll Number</label>
-               <input type="roll" name="roll" class="field" required />
-               <label class="labelForm" for="selectMonth">Select Month</label> -->
-
                <select name="selectOption">
                   <option selected>Select The Year</option>
                   <option value="FY-IT" name="Fy">FY-IT</option>
@@ -82,38 +78,6 @@
             />
          </div>
       </div>
-
-      <!-- <div class="text"><h2></h2></div> -->
-      <!-- 
-      <form name="month-def-form">
-         <select name="selectOption">
-            <option selected>Select The Year</option>
-            <option value="FY-IT" name="Fy">FY-IT</option>
-            <option value="SY-IT" name="Sy">SY-IT</option>
-            <option value="TY-IT" name="Ty">TY-IT</option>
-         </select>
-
-         <br /><br />
-         <select name="selectMonth">
-            <option selected>Select The Month</option>
-            <option value="January" name="January">January</option>
-            <option value="February" name="Sy">February</option>
-            <option value="March" name="Ty">March</option>
-            <option value="April" name="Ty">April</option>
-            <option value="May" name="Ty">May</option>
-            <option value="June" name="Ty">June</option>
-            <option value="July" name="Ty">July</option>
-            <option value="August" name="Ty">August</option>
-            <option value="September" name="Ty">September</option>
-            <option value="October" name="Ty">October</option>
-            <option value="November" name="Ty">November</option>
-            <option value="December" name="Ty">December</option>
-         </select>
-         <p class="error error--hidden"></p>
-         <button class="btn btn-secondary nextButton" type="submit">
-            <b>Next</b>
-         </button>
-      </form> -->
    </body>
    <script src="{{ url_for('static', filename='./Javascript/jquery.js') }}"></script>
    <script src="{{ url_for('static', filename='./Javascript/month-defaulter.js') }}"></script>

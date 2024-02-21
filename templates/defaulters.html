@@ -49,6 +49,9 @@
       </nav>
       <section>
          <div class="left-section">
+            <div class="left-heading">
+               Defaulters List for {{session["monthDefaulters"]}} month >
+            </div>
             <table>
                <tr>
                   <th>Roll Number</th>
@@ -67,6 +70,7 @@
             <button class="info-parents">
                <a href="/admin/parentInfo">Inform Their Parents</a>
             </button>
+            <div class="right-heading">View Graphically</div>
             <select name="selectOption" class="right-select">
                <option selected>Select Options</option>
                <option value="50">Less than 50%</option>
@@ -74,6 +78,7 @@
                <option value="90">Less than 90%</option>
             </select>
             <button class="right-btn">Check</button>
+            <div class="right-container"></div>
          </div>
       </section>
    </body>

@@ -128,14 +128,27 @@ nav label.cancel {
       left: 0;
    }
 }
-
+.faces {
+   display: flex;
+   gap: 2em;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
 table {
+   width: 20%;
+   height: 50%;
    border-collapse: collapse;
    box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
    border: none;
-   width: 30em;
+   /* width: 30em; */
    box-sizing: border-box;
    border-radius: 0.6em;
+}
+.left-heading {
+   font-size: 1.7em;
+   margin-top: 2em;
+   font-weight: 600;
 }
 table:hover {
    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
@@ -143,7 +156,7 @@ table:hover {
 td,
 th {
    margin: auto;
-   font-size: 1.5em;
+   font-size: 1.1em;
    padding: 1em;
 }
 td {

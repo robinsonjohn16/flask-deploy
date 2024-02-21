@@ -222,3 +222,9 @@ def parentCal():
 @app.route("/admin/sendMail/", methods=["GET"])
 def Mail():
     return Admin().sendMail()
+
+
+@admin_login_required
+@app.route("/admin/pullTeacherForm/", methods=["GET"])
+def pull():
+    return Admin().pullForm()

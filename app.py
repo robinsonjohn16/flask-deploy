@@ -9,3 +9,6 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 from myRoutes import *
+
+if __name__ == "__main__":
+    app.run()
